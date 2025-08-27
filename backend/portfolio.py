@@ -19,7 +19,7 @@ class Portfolio:
         self.stocks = {}
 
     # ---- CRUD ----
-    def add_stock(self, ticker: str, weight: float) -> str:
+    def add_stock(self, ticker: str, weight: float = 1.0) -> str:
         ticker = ticker.upper().strip()
         if ticker and ticker not in self.stocks:
             self.stocks[ticker]=weight
@@ -134,7 +134,7 @@ class Portfolio:
         ann_vol = float(port_ret.std() * math.sqrt(252.0))
         return ann_vol
     def volatility(self, ticker: str, period: str = "3mo") -> float:
-     return self.ticker_volatilities(period).get(ticker, float("nan"))
+        return self.ticker_volatilities(period).get(ticker, float("nan"))
 
 
     # ---- AI Insight ----

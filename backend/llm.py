@@ -46,4 +46,7 @@ def ai_summary(prompt: str) -> str:
         res = model.generate_content(prompt)
         return res.text.strip()
     except Exception as e:
-        return f"(AI summary unavailable: {e})"
+        return (
+            "Portfolio insight unavailable: AI service not configured. "
+            "Please set GEMINI_API_KEY."
+        )
