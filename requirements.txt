@@ -1,0 +1,12 @@
+python-dotenv
+yfinance
+requests
+pydantic
+pandas
+numpy
+matplotlib
+langchain
+faiss-cpu
+sentence-transformers
+streamlit
+google-generativeai
