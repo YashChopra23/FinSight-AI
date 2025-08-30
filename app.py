@@ -4,19 +4,72 @@ import pandas as pd
 import plotly.express as px
 from typing import List, Dict
 from backend.portfolio import Portfolio
+from dotenv import load_dotenv
+load_dotenv()
+
 
 st.set_page_config(page_title="FinSight AI", page_icon="📊", layout="wide")
 
-# ---- Minimal styling ----
 st.markdown(
     """
     <style>
-      .finsight-hero h1 {margin-bottom: 0rem}
-      .finsight-hero p {color: #888; margin-top: 0.25rem}
-      .chip {display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; margin-right:6px; background: rgba(0,0,0,0.06)}
-      .chip.flag {background:#FFE8E8; color:#B00020}
-      .chip.ok {background:#E6F4EA; color:#137333}
-      .markdown-insight {padding: 0.75rem 1rem; border-radius: 10px; background: var(--secondary-background-color, #f6f6f6);}
+      /* Subtle white gradient background */
+      .stApp {
+        background: linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 50%, #F5F5F5 100%);
+        background-attachment: fixed;
+      }
+      .block-container { background: transparent; }
+
+      /* Make all text black for readability */
+      .stApp, .stApp * {
+        color: #111 !important;
+      }
+      /* Keep buttons readable (white text on themed background) */
+      .stButton button, .stDownloadButton button {
+        color: #FFFFFF !important;
+      }
+      /* Links readable and distinct */
+      a, a * {
+        color: #0B63F6 !important; text-decoration: underline;
+      }
+
+      .finsight-hero h1 { margin-bottom: 0rem; }
+      .finsight-hero p  { color: #111; margin-top: 0.25rem; }
+      .chip { display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; margin-right:6px; background: rgba(0,0,0,0.06); color:#111; }
+      .chip.flag { background:#FFE8E8; color:#B00020; }
+      .chip.ok   { background:#E6F4EA; color:#137333; }
+
+      /* Sidebar: white text on black background */
+      section[data-testid="stSidebar"] {
+        background-color: #0f0f10 !important;
+      }
+      section[data-testid="stSidebar"] * {
+        color: #fff !important;
+      }
+
+      /* Sidebar inputs/buttons for dark background */
+      section[data-testid="stSidebar"] input,
+      section[data-testid="stSidebar"] textarea,
+      section[data-testid="stSidebar"] select {
+        background-color: #1a1a1a !important;
+        color: #fff !important;
+        border-color: #333 !important;
+      }
+      section[data-testid="stSidebar"] .stButton button,
+      section[data-testid="stSidebar"] .stDownloadButton button {
+        background-color: #222 !important;
+        color: #fff !important;
+        border: 1px solid #444 !important;
+      }
+
+      /* AI insight / report summary cards with light gradient */
+      .markdown-insight {
+        padding: 0.9rem 1.1rem;
+        border-radius: 12px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(245,245,245,0.95));
+        border: 1px solid rgba(0,0,0,0.08);
+        box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+      }
     </style>
     """,
     unsafe_allow_html=True,
